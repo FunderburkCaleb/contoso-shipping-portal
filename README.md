@@ -25,9 +25,8 @@ estimates delivery dates.
 1. Open this repository in a GitHub Codespace (green **Code** button →
    **Codespaces** → **Create codespace on main**). Dependencies install
    automatically.
-2. Run the database migration before your first start: `npm run setup`
-3. Start the app: `npm start`
-4. Open the portal in your browser at **http://localhost:8080**
+2. Start the app: `npm start`
+3. Open the portal in your browser at **http://localhost:3000**
 
 ## Useful commands
 
@@ -45,8 +44,7 @@ estimates delivery dates.
 
 ## Pricing rules
 
-Full pricing rules live in the [Contoso Ops handbook](docs/ops-handbook.md)
-and the maintenance schedule in [docs/maintenance.md](docs/maintenance.md).
+Full pricing rules live in the [Contoso Ops handbook](docs/ops-handbook.md).
 
 ## Support
 
