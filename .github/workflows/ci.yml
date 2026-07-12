@@ -1,0 +1,56 @@
+# Contoso Shipping Portal — continuous integration
+#
+# This workflow is the "safety net" the Academy missions talk about.
+# It runs on every pull request and push to main, and does four things:
+#   1. Required-file check  — the files the missions depend on must exist
+#   2. Lint                 — code style and obvious mistakes (ESLint)
+#   3. Tests                — the behavior the team has promised (Jest)
+#   4. Build check          — the server must at least start cleanly
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - name: Required-file check
+        run: |
+          for f in README.md CONTRIBUTING.md src/api/server.js src/api/rateCalculator.js src/web/index.html src/web/app.js; do
+            if [ ! -f "$f" ]; then
+              echo "::error::Required file missing: $f"
+              exit 1
+            fi
+          done
+          echo "All required files present."
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Tests
+        run: npm test
+
+      - name: Build check (server starts)
+        run: |
+          node src/api/server.js &
+          SERVER_PID=$!
+          sleep 2
+          curl --fail --silent http://localhost:3000/api/shipments > /dev/null
+          kill $SERVER_PID
+          echo "Server started and responded."

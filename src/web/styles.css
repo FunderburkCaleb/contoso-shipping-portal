@@ -1,0 +1,72 @@
+:root {
+  --ink: #1b2733;
+  --paper: #f6f8fa;
+  --panel: #ffffff;
+  --line: #d8dee4;
+  --accent: #0a5c8c;      /* harbor blue */
+  --ok: #1a7f37;
+  --warn: #9a6700;
+  --bad: #cf222e;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+}
+
+.topbar {
+  background: var(--accent);
+  color: #fff;
+  padding: 1.1rem 2rem;
+}
+
+.brand { display: flex; align-items: center; gap: 0.6rem; }
+.brand-mark { font-size: 1.3rem; }
+.brand h1 { margin: 0; font-size: 1.35rem; font-weight: 600; letter-spacing: 0.02em; }
+.tagline { margin: 0.25rem 0 0; opacity: 0.85; font-size: 0.85rem; }
+
+main { max-width: 1080px; margin: 1.5rem auto; padding: 0 1.5rem; display: grid; gap: 1.5rem; }
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.25rem 1.5rem;
+}
+
+.panel h2 { margin: 0 0 1rem; font-size: 1.05rem; }
+
+table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+th { text-align: left; border-bottom: 2px solid var(--line); padding: 0.5rem 0.6rem; font-weight: 600; }
+td { border-bottom: 1px solid var(--line); padding: 0.55rem 0.6rem; }
+.loading { color: #667; font-style: italic; }
+
+.status {
+  display: inline-block;
+  padding: 0.15rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+.status-in_transit { background: #ddf4ff; color: var(--accent); }
+.status-delivered { background: #dafbe1; color: var(--ok); }
+.status-delayed { background: #fff8c5; color: var(--warn); }
+.status-unknown { background: #ffebe9; color: var(--bad); }
+
+.quote-form { display: flex; flex-wrap: wrap; gap: 1rem; align-items: end; }
+.quote-form label { display: flex; flex-direction: column; gap: 0.3rem; font-size: 0.85rem; }
+.quote-form input, .quote-form select {
+  padding: 0.45rem 0.6rem; border: 1px solid var(--line); border-radius: 6px; font-size: 0.9rem;
+}
+.quote-form button {
+  padding: 0.5rem 1.1rem; background: var(--accent); color: #fff;
+  border: none; border-radius: 6px; font-size: 0.9rem; cursor: pointer;
+}
+.quote-form button:hover { filter: brightness(1.1); }
+.quote-result { font-weight: 600; font-size: 1rem; }
+
+footer { text-align: center; color: #667; font-size: 0.8rem; padding: 1.5rem 0 2rem; }

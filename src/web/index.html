@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contoso Shipping Portal</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-mark">▲</span>
+      <h1>Contoso Shipping</h1>
+    </div>
+    <p class="tagline">Freight tracking &amp; rate portal — internal ops tool</p>
+  </header>
+
+  <main>
+    <section class="panel">
+      <h2>Active shipments</h2>
+      <table id="shipments-table">
+        <thead>
+          <tr>
+            <th>Tracking #</th>
+            <th>Customer</th>
+            <th>Route</th>
+            <th>Service</th>
+            <th>Weight</th>
+            <th>Rate</th>
+            <th>Est. delivery</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="shipments-body">
+          <tr><td colspan="8" class="loading">Loading shipments…</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>Quick quote</h2>
+      <div class="quote-form">
+        <label>Weight (kg) <input type="number" id="quote-weight" value="10" min="0.1" step="0.1" /></label>
+        <label>Zone
+          <select id="quote-zone">
+            <option value="domestic">Domestic</option>
+            <option value="international">International</option>
+          </select>
+        </label>
+        <label>Service
+          <select id="quote-service">
+            <option value="standard">Standard</option>
+            <option value="express">Express</option>
+          </select>
+        </label>
+        <button id="quote-button">Get quote</button>
+        <span id="quote-result" class="quote-result"></span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Contoso Shipping Portal · lab environment for the GitHub Copilot Academy</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
