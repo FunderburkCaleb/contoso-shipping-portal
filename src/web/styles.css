@@ -70,3 +70,31 @@ td { border-bottom: 1px solid var(--line); padding: 0.55rem 0.6rem; }
 .quote-result { font-weight: 600; font-size: 1rem; }
 
 footer { text-align: center; color: #667; font-size: 0.8rem; padding: 1.5rem 0 2rem; }
+
+.copy-btn {
+  margin-left: 0.4rem;
+  padding: 0 0.35rem;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--paper);
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--accent);
+}
+.copy-btn:hover { background: #eaf3f9; }
+
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translate(-50%, 1rem);
+  background: var(--ink);
+  color: #fff;
+  padding: 0.55rem 1.1rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.toast-visible { opacity: 1; transform: translate(-50%, 0); }

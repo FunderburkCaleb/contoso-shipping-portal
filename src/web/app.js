@@ -24,7 +24,10 @@ async function loadShipments() {
       .map(
         (s) => `
       <tr>
-        <td><code>${s.trackingNumber}</code></td>
+        <td>
+          <code>${s.trackingNumber}</code>
+          <button class="copy-btn" data-tracking="${s.trackingNumber}" title="Copy tracking number">⧉</button>
+        </td>
         <td>${s.customer}</td>
         <td>${s.origin} → ${s.destination}</td>
         <td>${s.service}</td>
@@ -63,6 +66,26 @@ async function getQuote() {
     result.textContent = `Error: ${err.message}`;
   }
 }
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('toast-visible');
+  clearTimeout(showToast._timer);
+  showToast._timer = setTimeout(() => toast.classList.remove('toast-visible'), 2000);
+}
+
+document.getElementById('shipments-body').addEventListener('click', async (e) => {
+  const btn = e.target.closest('.copy-btn');
+  if (!btn) return;
+  const tracking = btn.dataset.tracking;
+  try {
+    await navigator.clipboard.writeText(tracking);
+    showToast(`Copied ${tracking}`);
+  } catch (_err) {
+    showToast('Copy failed — select and copy manually');
+  }
+});
 
 document.getElementById('quote-button').addEventListener('click', getQuote);
 loadShipments();
