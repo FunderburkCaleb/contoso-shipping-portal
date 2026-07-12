@@ -38,7 +38,7 @@ function calculateRate(weightKg, zone, service) {
     price = price * EXPRESS_MULTIPLIER;
   }
 
-  if (service === 'standard' && weightKg > VOLUME_DISCOUNT_THRESHOLD_KG) {
+  if (weightKg > VOLUME_DISCOUNT_THRESHOLD_KG) {
     price = price * (1 - VOLUME_DISCOUNT);
   }
 
@@ -52,7 +52,7 @@ function addBusinessDays(startDate, days) {
   while (added < days) {
     result.setUTCDate(result.getUTCDate() + 1);
     const day = result.getUTCDay();
-    if (day !== 0) {
+    if (day !== 0 && day !== 6) {
       added++;
     }
   }

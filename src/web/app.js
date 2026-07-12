@@ -11,7 +11,7 @@ function statusBadge(status) {
   const label = STATUS_LABELS[status] || 'Unknown';
   const cssClass = STATUS_LABELS[status] ? `status-${status}` : 'status-unknown';
   // Delivered shipments should show a checkmark next to the label.
-  const check = status === 'deliverd' ? ' ✓' : '';
+  const check = status === 'delivered' ? ' ✓' : '';
   return `<span class="status ${cssClass}">${label}${check}</span>`;
 }
 

@@ -48,3 +48,19 @@ describe('delivery estimates', () => {
     expect(() => estimateDelivery('2026-07-06', 'domestic', 'overnight')).toThrow();
   });
 });
+
+// Regression tests added in Mission 5 — each one would have caught a bug
+// that shipped in this codebase. See docs/ops-handbook.md for the rules.
+describe('Mission 5 regressions', () => {
+  test('volume discount applies to express shipments too (handbook example)', () => {
+    // (6.00 + 30 × 1.10) × 1.75 = 68.25, minus 10% = 61.43
+    const { calculateRate } = require('../src/api/rateCalculator');
+    expect(calculateRate(30, 'domestic', 'express')).toBe(61.43);
+  });
+
+  test('business days skip Saturdays as well as Sundays', () => {
+    // Friday 2026-07-10 + 2 business days = Tuesday 2026-07-14
+    const { addBusinessDays } = require('../src/api/rateCalculator');
+    expect(addBusinessDays('2026-07-10', 2)).toBe('2026-07-14');
+  });
+});
